@@ -1,0 +1,7 @@
+image: golang:1.16-alpine
+name: dpx
+runs:
+  - apk add alpine-sdk git
+  - go mod vendor
+envs:
+  - GOFLAGS=-mod=vendor
