@@ -6,13 +6,13 @@ before:
 
 builds:
   - <<: &build_defaults
-      binary: bin/dpx
+      binary: dpx
       main: ./cmd/dpx
       ldflags:
         - -s -w -X github.com/dpx/dpx/pkg/version.Version={{.Version}}
     id: macos
     goos: [darwin]
-    goarch: [amd64]
+    goarch: [amd64, arm64]
 
   - <<: *build_defaults
     id: linux
@@ -38,3 +38,14 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+brews:
+  - tap:
+      owner: dpx
+      name: homebrew-dpx
+    commit_author:
+      name: rezigned
+    homepage: https://github.com/dpx/dpx
+    description: Run any executable inside container on your machine
+    install: |
+      bin.install "dpx"

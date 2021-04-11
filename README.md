@@ -31,6 +31,16 @@ go mod init app
 
 ## Installation
 
+### macOS
+
+`dpx` is available on macOS via [Homebrew](https://brew.sh).
+
+```
+brew install dpx/dpx/dpx
+```
+
+### Others
+
 Packaged binaries can be downloaded from the [releases page](http://github.com/dpx/dpx/releases).
 
 ### Usage
