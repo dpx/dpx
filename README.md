@@ -2,7 +2,7 @@
 
 Run any *executable* inside container on your machine in few seconds (e.g. [go](https://hub.docker.com/_/golang), [node](https://hub.docker.com/_/node), [ruby](https://hub.docker.com/_/ruby), [python](https://hub.docker.com/_/python), [elixir](https://hub.docker.com/_/elixir), etc.).
 
-![](./docs/dpx-go-demo.gif)
+![](.github/demo/go.gif)
 
 ## Getting started
 
