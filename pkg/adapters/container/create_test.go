@@ -14,11 +14,12 @@ import (
 	"github.com/dpx/dpx/pkg/mock"
 	"github.com/dpx/dpx/pkg/mock/assert"
 	"github.com/dpx/dpx/pkg/utils"
+	specs "github.com/opencontainers/image-spec/specs-go/v1"
 )
 
 func TestContainer_Create_WithDefaultOptions(t *testing.T) {
 	d := &mock.Docker{}
-	d.ContainerCreateFn = func(ctx context.Context, config *cont.Config, hostConfig *cont.HostConfig, networkingConfig *network.NetworkingConfig, name string) (cont.ContainerCreateCreatedBody, error) {
+	d.ContainerCreateFn = func(ctx context.Context, config *cont.Config, hostConfig *cont.HostConfig, networkingConfig *network.NetworkingConfig, platform *specs.Platform, name string) (cont.ContainerCreateCreatedBody, error) {
 		h := defaultHostConfig()
 		c := defaultConfig()
 
@@ -40,7 +41,7 @@ func TestContainer_Create_WithDefaultOptions(t *testing.T) {
 
 func TestContainer_Create_WithPortOptions(t *testing.T) {
 	d := &mock.Docker{}
-	d.ContainerCreateFn = func(ctx context.Context, config *cont.Config, hostConfig *cont.HostConfig, networkingConfig *network.NetworkingConfig, name string) (cont.ContainerCreateCreatedBody, error) {
+	d.ContainerCreateFn = func(ctx context.Context, config *cont.Config, hostConfig *cont.HostConfig, networkingConfig *network.NetworkingConfig, platform *specs.Platform, name string) (cont.ContainerCreateCreatedBody, error) {
 		h := defaultHostConfig()
 		h.PortBindings = nat.PortMap{"5000/tcp": []nat.PortBinding{
 			{HostIP: "", HostPort: "4000"},
@@ -70,7 +71,7 @@ func TestContainer_Create_WithPortOptions(t *testing.T) {
 
 func TestContainer_Create_WithVolumeOptions(t *testing.T) {
 	d := &mock.Docker{}
-	d.ContainerCreateFn = func(ctx context.Context, config *cont.Config, hostConfig *cont.HostConfig, networkingConfig *network.NetworkingConfig, name string) (cont.ContainerCreateCreatedBody, error) {
+	d.ContainerCreateFn = func(ctx context.Context, config *cont.Config, hostConfig *cont.HostConfig, networkingConfig *network.NetworkingConfig, platform *specs.Platform, name string) (cont.ContainerCreateCreatedBody, error) {
 		h := defaultHostConfig()
 		h.Mounts = []mount.Mount{
 			{

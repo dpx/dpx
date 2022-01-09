@@ -7,6 +7,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
+	specs "github.com/opencontainers/image-spec/specs-go/v1"
 )
 
 // type DockerContainer struct{}
@@ -19,7 +20,7 @@ import (
 // func (d *DockerClient) NewClientWithOpts()
 
 type Docker struct {
-	ContainerCreateFn      func(ctx context.Context, config *container.Config, hostConfig *container.HostConfig, networkingConfig *network.NetworkingConfig, containerName string) (container.ContainerCreateCreatedBody, error)
+	ContainerCreateFn      func(ctx context.Context, config *container.Config, hostConfig *container.HostConfig, networkingConfig *network.NetworkingConfig, platform *specs.Platform, containerName string) (container.ContainerCreateCreatedBody, error)
 	ContainerStartFn       func(ctx context.Context, cID string, options types.ContainerStartOptions) error
 	ContainerStopFn        func(ctx context.Context, containerID string, timeout *time.Duration) error
 	ContainerListFn        func(ctx context.Context, options types.ContainerListOptions) ([]types.Container, error)
@@ -30,8 +31,8 @@ type Docker struct {
 	ContainerExecResizeFn  func(ctx context.Context, execID string, options types.ResizeOptions) error
 }
 
-func (d *Docker) ContainerCreate(ctx context.Context, config *container.Config, hostConfig *container.HostConfig, networkingConfig *network.NetworkingConfig, containerName string) (container.ContainerCreateCreatedBody, error) {
-	return d.ContainerCreateFn(ctx, config, hostConfig, networkingConfig, containerName)
+func (d *Docker) ContainerCreate(ctx context.Context, config *container.Config, hostConfig *container.HostConfig, networkingConfig *network.NetworkingConfig, platform *specs.Platform, containerName string) (container.ContainerCreateCreatedBody, error) {
+	return d.ContainerCreateFn(ctx, config, hostConfig, networkingConfig, platform, containerName)
 }
 
 func (d *Docker) ContainerStart(ctx context.Context, cID string, options types.ContainerStartOptions) error {

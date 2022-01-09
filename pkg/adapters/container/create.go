@@ -46,6 +46,7 @@ func (c *ContainerAdapter) Create(ctx context.Context, opts core.ContainerCreate
 			PortBindings: hostPorts,
 		},
 		&network.NetworkingConfig{},
+		nil,
 		opts.Name,
 	)
 
