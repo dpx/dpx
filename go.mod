@@ -12,7 +12,7 @@ require (
 	github.com/moby/sys/mount v0.3.3 // indirect
 	github.com/moby/term v0.0.0-20220808134915-39b0c02b01ae // indirect
 	github.com/opencontainers/image-spec v1.0.3-0.20211202183452-c5a74bcca799
-	github.com/opencontainers/runc v1.1.3 // indirect
+	github.com/opencontainers/runc v1.1.5 // indirect
 	github.com/opencontainers/selinux v1.10.1 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/urfave/cli/v2 v2.11.2
